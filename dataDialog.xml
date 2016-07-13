@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dialog xsi:noNamespaceSchemaLocation="WatsonDialogDocument_1.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <flow>
+        <folder label="Main">
+            <output>
+                <prompt selectionType="RANDOM">
+                    <item>Hi, I'm a bot! Who are you?</item>
+                    <item>Hey, I am a bot. What is your name?</item>
+                </prompt>
+                <goto ref="getUserInput"/>
+            </output>
+            <output>
+                <prompt selectionType="SEQUENTIAL">
+                    <item>What service would you like?</item>
+                </prompt>
+                <getUserInput id="getUserInput">
+                    <search ref="folder_Live"/>
+                    <default>
+                        <output>
+                            <prompt selectionType="RANDOM">
+                                <item>I didn't grasp what you said.</item>
+                                <item>I'm not following you at the moment.</item>
+                            </prompt>
+                        </output>
+                    </default>
+                </getUserInput>
+            </output>
+        </folder>
+        <folder label="Library">
+            <folder label="Live Content" id="folder_Live">
+                   <input>
+                    <grammar>
+                        <item>What do you have?</item>
+                        <item>$ What * do you have</item>
+                        <item>$ what * do you carry</item>
+                        <item>$ What * is there</item>
+                        <item>$ What are my choices</item>
+                        <item>$ do you have *</item>
+                        <item>$ which * do you have</item>
+                    </grammar>
+                    <input>
+                        <grammar>
+                            <item>$ (Service)</item>
+                            <item>service</item>
+                            <item>services</item>
+                        </grammar>
+                        <output>
+                            <prompt selectionType="RANDOM">
+                                <item>We have tablecount and listtables</item>
+                                <item>Specify a table name and count</item>
+                            </prompt>
+                        </output>
+                    </input>
+                    <output>
+                        <prompt selectionType="RANDOM">
+                            <item>We have all the usual UNIX commands.</item>
+                        </prompt>
+                    </output>
+                </input>
+                <input>
+                    <grammar>
+                        <item>I want (Service)={service}</item>
+                        <item>$ (Service)={service}</item>
+                        <item>I take (Service)={service}</item>
+                        <item>I prefer (Service)={service}</item>
+                    </grammar>
+                    <input>
+                        <grammar>
+                            <item>No services</item>
+                        </grammar>
+                        <action varName="service" operator="SET_TO">{service.value:main}</action>
+                        <goto ref="output_2469801"/>
+                    </input>
+                    <output>
+                        <prompt/>
+                        <action varName="service" operator="SET_TO">{service.value:main}</action>
+                        <output>
+                            <prompt selectionType="RANDOM">
+                                <item>{firstname}, what other stuff are you in the mood for?</item>
+                                <item>{lastname}, what other stuff are you in the mood for?</item>
+                            </prompt>
+                         </output>
+                    </output>
+                </input>
+                 <input id="input_userGivesName">
+                       <grammar>
+                           <item>My name is</item>
+                           <item>$ my name is (DYNAMIC_DATA)={username}</item>
+                           <item>$ I am (DYNAMIC_DATA)={username}</item>
+                           <item>$ I'm (DYNAMIC_DATA)={username}</item>
+                           <item>$ called (DYNAMIC_DATA)={username}</item>
+                           <item>$ call me (DYNAMIC_DATA)={username}</item>
+                           <item>$ known as (DYNAMIC_DATA)={username}</item>
+                           <item>$ (ANYTHING)={username}</item>
+                        </grammar>
+                        <action varName="username" operator="SET_TO">{username.source}</action>
+                        <output>
+                            <prompt selectionType="RANDOM">
+                                <item>Hi {username}!</item>
+                            </prompt>
+                        </output>
+                    </input>
+                  <input>
+                    <grammar>
+                        <item>What is my age</item>
+                        <item>$ How old am I</item>
+                        <item>When was I born</item>
+                        <item>$ What * birthday</item>
+                    </grammar>
+                         <output>
+                            <prompt selectionType="RANDOM">
+                                <item>Your birthdate is {bdate}</item>
+                                <item>You were born on {bdate}</item>
+                            </prompt>
+                        </output>
+ 		</input>
+             </folder>
+        </folder>
+
+    </flow>
+    <entities>
+        <entity name="Service">
+            <value name="tablecount" value="tablecount">
+                <grammar>
+                    <item>count</item>
+                    <item>table size</item>
+                    <item>table count</item>
+                    <item>tablecount</item>
+                </grammar>
+            </value>
+            <value name="listtables" value="listtables">
+                <grammar>
+                    <item>list tables</item>
+                    <item>show * tables</item>
+                    <item>what tables</item>
+                </grammar>
+            </value>
+        </entity>
+        <entity name="DYNAMIC_DATA">
+            <value name="DataCapture" value="DataCapture">
+                <grammar>
+                    <item>*</item>
+                </grammar>
+            </value>
+        </entity>
+        <entity name="ANYTHING">
+          <value>
+            <grammar>
+              <item>!.*</item>
+            </grammar>
+          </value>
+        </entity>
+    </entities>
+    <variables>
+        <var_folder name="Home">
+            <var name="service" type="TEXT"/>
+            <var name="username" type="TEXT"/>
+            <var name="firstname" type="TEXT"/>
+            <var name="lastname" type="TEXT"/>
+            <var name="cid" type="TEXT"/>
+            <var name="bdate" type="TEXT"/>
+            <var name="testme" type="TEXT"/>
+            <var name="dbquery" type="YESNO" initValue="NO"/>
+            <var name="dbtable" type="TEXT"/>
+            <var name="dbaction" type="TEXT"/>
+         </var_folder>
+    </variables>
+
+</dialog>
