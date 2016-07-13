@@ -1,0 +1,21 @@
+{
+    "credentials": {
+        "url": "https://gateway.watsonplatform.net/dialog/api",
+        "password": "password4dialog",
+        "username": "abcdef07-xxx-yyyy-zzzz-abcde991290c"
+    },
+  "dashDB": {
+        "port": 50000,
+        "db": "BLUDB",
+        "username": "dashXXXXXX",
+        "ssljdbcurl": "jdbc:db2://bluemixYY.bluforcloud.com:50001/BLUDB:sslConnection=true;",
+        "host": "bluemixYY.bluforcloud.com",
+        "https_url": "https://bluemixYY.bluforcloud.com:8443",
+        "dsn": "DATABASE=BLUDB;HOSTNAME=bluemixYY.bluforcloud.com;PORT=50000;PROTOCOL=TCPIP;UID=dashXXXXXX;PWD=password;",
+        "hostname": "bluemix05.bluforcloud.com",
+        "jdbcurl": "jdbc:db2://bluemixYY.bluforcloud.com:50000/BLUDB",
+        "ssldsn": "DATABASE=BLUDB;HOSTNAME=bluemixYY.bluforcloud.com;PORT=50001;PROTOCOL=TCPIP;UID=dashXXXXXX;PWD=password;Security=SSL;",
+        "uri": "db2://dashXXXXXX:password@bluemixYY.bluforcloud.com:50000/BLUDB",
+        "password": "password"
+    }
+}
