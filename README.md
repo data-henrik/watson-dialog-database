@@ -73,5 +73,9 @@ bye
 ```
 
 # Links
+* Try out IBM Bluemix at http://www.ibm.com/cloud-computing/bluemix/
+* See the IBM Bluemix documentation at https://console.ng.bluemix.net/docs/
+* Ask Bluemix programming question on Stack Overflow at http://stackoverflow.com/questions/tagged/bluemix
+
 
 [watson-dialog-client]: https://github.com/data-henrik/watson-dialog-client
