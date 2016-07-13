@@ -16,17 +16,17 @@ The necessary setup before using the dialog.py script consists of provisioning t
 
 You need a Python environment with the "watson-developer-cloud" and "ibm_db" modules installed ("pip install ...").
 
-    1) Login to Bluemix, provision a Watson Dialog service, copy & paste the service credentials to the config.json file.
-    2) Next provision a dashDB service, copy the service credentials to the config.json file
-    3) Launch the dashDB management dashboard and open the "Run SQL" wizard. Past the contents from dashDB.sql into the emptied form and then click "Run" to execute the SQL statements. There should be several success messages with a table created and some rows inserted.
-    4) If not done already, obtain the [watson-dialog-client][watson-dialog-client]. Register the file dataDialog.xml as new dialog and obtain the dialogID.
-    5) Edit dialog.py and change the hardcoded dialogID.
+1. Login to Bluemix, provision a Watson Dialog service, copy & paste the service credentials to the config.json file.
+2. Next provision a dashDB service, copy the service credentials to the config.json file
+3. Launch the dashDB management dashboard and open the "Run SQL" wizard. Past the contents from dashDB.sql into the emptied form and then click "Run" to execute the SQL statements. There should be several success messages with a table created and some rows inserted.
+4. If not done already, obtain the [watson-dialog-client][watson-dialog-client]. Register the file dataDialog.xml as new dialog and obtain the dialogID.
+5. Edit dialog.py and change the hardcoded dialogID.
 
 Now everything should be set to give it a try.
 
 ## Sample Run
 
-The following shows a sample run of the script.
+The following shows a sample run of the script. The answer to the first question is a simple "Max", followed by a "list tables" and later on a "What is my age". The dialog is ended by answering "bye". Based on the debug output (see the file [dialog.py](dialog.py)), you should be able to see how the script interacts with Watson and dashDB.
 
 ```
 [henrik@hisMachine]$ python dialog.py 
