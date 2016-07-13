@@ -5,6 +5,23 @@ This example shows how to combine the Watson Dialog Service and a database like 
 ## Overview
 The data-backed dialog is driven by a Python script that communicates with the Watson Dialog and dashDB services. The dialog itself needs to be specified in an XML file and registered before invoking that script (see Setup). The database is prepared by creating a single table and inserting some rows. The script reads most of the configuration from a file, only the dialogID needs to be hardcoded (for the sake of simplicity).
 
+![Architecture](http://g.gravizo.com/g?
+  digraph G {
+    node [fontname = "helvetica"]
+    rankdir=LR
+    /* interact with dialog */
+    user -> dialogPY [color="darkblue" style=dotted]
+    /* drive conversation with Watson Dialog */
+    dialogPY -> watson
+    /* fetch records from dashDB */
+    dialogPY -> dashDB
+    /* styling */
+    dialogPY [shape=circle style=filled color="darkgreen" fontcolor=white label="dialog.py"]
+    watson [shape=circle style=filled color="blue" fontcolor=white label="Watson Dialog"]
+    dashDB [shape=circle style=filled color="blue" fontcolor=white label="dashDB"]
+  }
+)
+
 **Files**:
 * dialog.py: Python script that drives the dialog with Watson and interacts with dashDB
 * dataDialog.xml: Dialog specification, needs to be registered with the Watson Dialog service
